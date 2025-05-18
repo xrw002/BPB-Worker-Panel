@@ -32,6 +32,12 @@ jobs:
       - name: Build project
         run: npm run build
 
+      - name: Organize build files
+        run: |
+          mkdir -p build
+          cp -f dist/_worker.js build/unobfuscated-worker.js
+          zip -j build/unobfuscated-worker.zip dist/_worker.js
+
       - name: Read release note
         id: read_release
         shell: bash
